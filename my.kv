@@ -1,3 +1,5 @@
+#:import random random
+
 <ScatterTextWidget>:
     orientation: 'vertical'
     TextInput:
@@ -6,8 +8,12 @@
         size_hint_y: None
         height: 75
         text: 'Hello, world!'
+        opacity: random.random()
+        on_text: my_label.color = [random.random() for i in range(3)] + [my_textinput.opacity + 0.3 if my_textinput.opacity < 0.4 else my_textinput.opacity]
     FloatLayout:
         Scatter:
             Label:
+                id: my_label
                 text: my_textinput.text
                 font_size: 50
+                color: [1, 0, 0, 1]
